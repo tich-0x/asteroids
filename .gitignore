@@ -11,3 +11,4 @@ wheels/
 
 # game artifacts
 game_state.jsonl
+game_events.jsonl

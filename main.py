@@ -19,11 +19,17 @@ def main():
     clock = pygame.time.Clock()
     dt = 0.0
 
+    # load background image and create shade
+    bg_image = pygame.image.load("background.jpg").convert()
+    bg_image = pygame.transform.scale(bg_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
+    shade_bg = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
+    shade_bg.set_alpha(100)
+
+    # pygame grouping
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
     asteroids = pygame.sprite.Group()
     shots = pygame.sprite.Group()
-
     Player.containers = (updatable, drawable)
     Asteroid.containers = (asteroids, updatable, drawable)
     AsteroidField.containers = (updatable)
@@ -39,7 +45,9 @@ def main():
             if event.type == pygame.QUIT:
                 return
 
-        screen.fill("black")
+        # set background and apply shading
+        screen.blit(bg_image, (0, 0))
+        screen.blit(shade_bg, (0, 0))
 
         updatable.update(dt)
 

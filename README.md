@@ -1,7 +1,8 @@
 # Extending the project
 - [x] Add a background image
-- [ ] Add a scoring system
+- [x] Add a scoring system
 - [ ] Implement multiple lives and respawning
+- [ ] Add a top bar to track score and remaining lives
 - [ ] Implement GAME OVER screen and optional restart
 - [ ] Make the asteroids lumpy instead of perfectly round
 - [ ] Shoot form the tip of the ship and not from the middle

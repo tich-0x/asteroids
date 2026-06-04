@@ -19,7 +19,7 @@ def main():
     clock = pygame.time.Clock()
     dt = 0.0
 
-    # load background image and create shade
+    # Load background image and create shade
     bg_image = pygame.image.load("background.jpg").convert()
     bg_image = pygame.transform.scale(bg_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
     shade_bg = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -38,6 +38,7 @@ def main():
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     asteroid_field = AsteroidField()
 
+    # Main game loop
     while True:
         log_state()
 
@@ -54,13 +55,14 @@ def main():
         for asteroid in asteroids:
             if asteroid.collides_with(player):
                 log_event("player_hit")
-                print("Game over!")
+                print(f"Game over! Your score: {player.score}")
                 sys.exit()
 
             for shot in shots:
                 if asteroid.collides_with(shot):
                     log_event("asteroid_shot")
                     shot.kill()
+                    player.score += asteroid.value
                     asteroid.split()
 
         for sprite in drawable:

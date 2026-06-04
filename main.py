@@ -19,6 +19,8 @@ def main():
     clock = pygame.time.Clock()
     dt = 0.0
 
+    font = pygame.font.Font(None, 35)
+
     # Load background image and create shade
     bg_image = pygame.image.load("background.jpg").convert()
     bg_image = pygame.transform.scale(bg_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -64,7 +66,6 @@ def main():
                 player.shield_duration = 2
                 player.rotation = 0
                 player.position = pygame.Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-                print(f"Remaining lives: {player.lives}")
 
             for shot in shots:
                 if asteroid.collides_with(shot):
@@ -75,6 +76,9 @@ def main():
 
         for sprite in drawable:
             sprite.draw(screen)
+
+        top_bar = font.render(f"Lives: {player.lives} Score: {int(player.score)}", True, "white")
+        screen.blit(top_bar, (10, 10)) 
 
         pygame.display.flip()
 

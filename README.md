@@ -1,7 +1,7 @@
 # Extending the project
 - [x] Add a background image
 - [x] Add a scoring system
-- [ ] Implement multiple lives and respawning
+- [x] Implement multiple lives and respawning
 - [ ] Add a top bar to track score and remaining lives
 - [ ] Implement GAME OVER screen and optional restart
 - [ ] Make the asteroids lumpy instead of perfectly round

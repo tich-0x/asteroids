@@ -58,10 +58,13 @@ class Player(CircleShape):
         if self.shot_cooldown_timer > 0:
             return
 
-        self.shot_cooldown_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
-        shot = Shot(self.position.x, self.position.y)
+        # Find the tip of the ship
+        tip = pygame.Vector2(0, 1).rotate(self.rotation) * self.radius
+
+        shot = Shot(self.position.x + tip.x, self.position.y + tip.y)
         shot.velocity = pygame.Vector2(0, 1)
         shot.velocity = shot.velocity.rotate(self.rotation) * PLAYER_SHOOT_SPEED
+        self.shot_cooldown_timer = PLAYER_SHOOT_COOLDOWN_SECONDS
 
     def shield(self, time: float):
         self.shield_duration = time

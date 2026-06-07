@@ -55,7 +55,7 @@ def main():
         updatable.update(dt)
 
         for asteroid in asteroids:
-            if asteroid.collides_with(player):
+            if player.collides_with(asteroid):
                 if player.shield_duration > 0:
                     continue
                 log_event("player_hit")

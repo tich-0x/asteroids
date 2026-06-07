@@ -68,3 +68,28 @@ class Player(CircleShape):
 
     def shield(self, time: float):
         self.shield_duration = time
+
+    def collides_with(self, other: CircleShape) -> bool:
+        a, b, c = self.triangle()
+        # Edge = end - start
+        ab = b - a
+        bc = c - b
+        ca = a - c
+
+        for i in [(a, ab), (b, bc), (c, ca)]:
+            start, edge = i
+            center = other.position
+
+            # Projecting the center of other object onto the edge
+            t = (center - start).dot(edge) / edge.length_squared()
+
+            # Clamping to the finite segment
+            t = max(0, min(1, t))
+
+            # Calculating the closest point
+            closest = start + edge * t
+
+            if center.distance_to(closest) <= other.radius:
+                return True
+            
+        return False

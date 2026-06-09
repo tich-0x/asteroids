@@ -8,6 +8,21 @@ from asteroid import Asteroid
 from asteroidfield import AsteroidField
 from shot import Shot
 
+def setup():
+    # pygame grouping
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = (updatable)
+    Shot.containers = (shots, drawable, updatable)
+
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    asteroid_field = AsteroidField()
+
+    return [updatable, drawable, asteroids, shots, player]
 
 def main():
     print(f"Starting Asteroids with pygame version: {pygame.version.ver}")
@@ -21,24 +36,14 @@ def main():
 
     font = pygame.font.Font(None, 35)
 
+    updatable, drawable, asteroids, shots, player = setup()
+
     # Load background image and create shade
     bg_image = pygame.image.load("background.jpg").convert()
     bg_image = pygame.transform.scale(bg_image, (SCREEN_WIDTH, SCREEN_HEIGHT))
     shade_bg = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT))
     shade_bg.set_alpha(100)
 
-    # pygame grouping
-    updatable = pygame.sprite.Group()
-    drawable = pygame.sprite.Group()
-    asteroids = pygame.sprite.Group()
-    shots = pygame.sprite.Group()
-    Player.containers = (updatable, drawable)
-    Asteroid.containers = (asteroids, updatable, drawable)
-    AsteroidField.containers = (updatable)
-    Shot.containers = (shots, drawable, updatable)
-
-    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-    asteroid_field = AsteroidField()
 
     # Main game loop
     while True:
@@ -63,6 +68,7 @@ def main():
                 if player.lives <= 0:
                     print(f"Game over! Your score: {player.score}")
                     sys.exit()
+
                 player.shield_duration = 2
                 player.rotation = 0
                 player.position = pygame.Vector2(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)

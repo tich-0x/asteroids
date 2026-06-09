@@ -6,7 +6,7 @@
 - [ ] Implement GAME OVER screen and optional restart
 - [ ] Make the asteroids lumpy instead of perfectly round
 - [x] Shoot form the tip of the ship and not from the middle
-- [ ] Make the ship have a triangular hit box instead of a circular one
+- [x] Make the ship have a triangular hit box instead of a circular one
 - [ ] Add an explosion effect for the asteroids
 - [ ] Add acceleration to the player movement
 - [ ] Make the objects wrap around the screen instead of disappearing
